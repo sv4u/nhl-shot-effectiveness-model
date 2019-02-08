@@ -2,4 +2,34 @@
 title: "NHL Shot Effectiveness Model"
 author: "Sasank Vishnubhatla"
 date: "February 8th, 2019"
+runtime: shiny
+output:
+  html_document:
+    theme: simplex
+    df_print: paged
 ---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+Last Update: `r Sys.time()`
+
+# Libraries {.tabset} {.tabset-fade}
+
+Before we start, let's load a few libraries.
+
+```{r libraries}
+rm(list = ls())
+
+options(warn = -1)
+
+library(knitr)
+library(ggplot2)
+library(caret)
+library(doParallel)
+
+registerDoParallel(cores = (detectCores() - 1))
+```
+
+With our libraries loaded we can start loading our data.
