@@ -1,0 +1,5 @@
+---
+title: "NHL Shot Effectiveness Model"
+author: "Sasank Vishnubhatla"
+date: "February 8th, 2019"
+---
