@@ -1596,9 +1596,9 @@ $(document).ready(function () {
 </div>
 
 
-<p>Last Update: 2019-02-08 18:34:06</p>
-<div id="section-libraries-.tabset" class="section level1 tabset-fade">
-<h1>Libraries {.tabset}</h1>
+<p>Last Update: 2019-02-11 13:21:04</p>
+<div id="section-libraries" class="section level1">
+<h1>Libraries</h1>
 <p>Before we start, let’s load a few libraries.</p>
 <pre class="r"><code>rm(list = ls())
 
@@ -1611,6 +1611,108 @@ library(doParallel)
 
 registerDoParallel(cores = (detectCores() - 1))</code></pre>
 <p>With our libraries loaded we can start loading our data.</p>
+</div>
+<div id="section-data-loading" class="section level1">
+<h1>Data Loading</h1>
+<p>Let’s read in our data.</p>
+<pre class="r"><code>data.2015 = read.csv(&quot;data/2015.csv&quot;)
+data.2016 = read.csv(&quot;data/2016.csv&quot;)
+data.2017 = read.csv(&quot;data/2017.csv&quot;)
+data.2018 = read.csv(&quot;data/2018.csv&quot;)</code></pre>
+<p>Now, we will only deal with regular season events. So let’s remove the playoffs from our datasets.</p>
+<pre class="r"><code>get.regular.season = function(data) {
+    subset(data, isPlayoffGame == 0)
+}
+
+season.2015 = get.regular.season(data.2015)
+season.2016 = get.regular.season(data.2016)
+season.2017 = get.regular.season(data.2017)
+season.2018 = get.regular.season(data.2018)</code></pre>
+<p>Here is a table of all the columns we shall keep and what we shall rename them to.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Old Column Name</th>
+<th>New Column Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>xCordAdjusted</code></td>
+<td><code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>yCordAdjusted</code></td>
+<td><code>y</code></td>
+</tr>
+<tr class="odd">
+<td><code>shotAngleAdjusted</code></td>
+<td><code>angle</code></td>
+</tr>
+<tr class="even">
+<td><code>shotDistance</code></td>
+<td><code>dist</code></td>
+</tr>
+<tr class="odd">
+<td><code>teamCode</code></td>
+<td><code>team</code></td>
+</tr>
+<tr class="even">
+<td><code>shooterName</code></td>
+<td><code>shooter</code></td>
+</tr>
+<tr class="odd">
+<td><code>shotType</code></td>
+<td><code>type</code></td>
+</tr>
+<tr class="even">
+<td><code>goalieNameForShot</code></td>
+<td><code>goalie</code></td>
+</tr>
+<tr class="odd">
+<td><code>goal</code></td>
+<td><code>goal</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>get.helpful.data = function(data) {
+    data.frame(x = data$xCordAdjusted,
+               y = data$yCordAdjusted,
+               angle = data$shotAngleAdjusted,
+               dist = data$shotDistance,
+               type = data$shotType,
+               goal = data$goal,
+               team = data$teamCode,
+               shooter = data$shooterName,
+               goalie = data$goalieNameForShot)
+}
+
+analysis.2015 = get.helpful.data(season.2015)
+analysis.2016 = get.helpful.data(season.2016)
+analysis.2017 = get.helpful.data(season.2017)
+analysis.2018 = get.helpful.data(season.2018)</code></pre>
+<p>Now, we can remove incomplete cases and create our machine learning model’s giant data set.</p>
+<pre class="r"><code>analysis.2015 = analysis.2015[complete.cases(analysis.2015),]
+analysis.2016 = analysis.2016[complete.cases(analysis.2016),]
+analysis.2017 = analysis.2017[complete.cases(analysis.2017),]
+analysis.all = rbind(analysis.2017, rbind(analysis.2016, analysis.2015))
+analysis.all = analysis.all[complete.cases(analysis.all),]
+analysis.2018 = analysis.2018[complete.cases(analysis.2018),]</code></pre>
+<p>Now, we need a few functions to help us select certain subsets of data. We’ll define three functions: <code>get.team.data</code>, <code>get.shooter.data</code>, <code>get.goalie.data</code>.</p>
+<pre class="r"><code>get.team.data = function(data, code) {
+    subset(data, team == code)
+}
+
+get.shooter.data = function(data, name) {
+    subset(data, shooter = name)
+}
+
+get.goalie.data = function(data, name) {
+    subset(data, goalie = name)
+}</code></pre>
+</div>
+<div id="section-creating-the-models" class="section level1">
+<h1>Creating the Models</h1>
 </div>
 
 

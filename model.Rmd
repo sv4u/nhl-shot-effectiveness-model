@@ -62,8 +62,6 @@ Here is a table of all the columns we shall keep and what we shall rename them t
 
 | Old Column Name | New Column Name |
 | --------------- | --------------- |
-| Old Column Name | New Column Name |
-| --------------- | --------------- |
 | `xCordAdjusted` | `x` |
 | `yCordAdjusted` | `y` |
 | `shotAngleAdjusted` | `angle` |
@@ -86,4 +84,38 @@ get.helpful.data = function(data) {
 			   shooter = data$shooterName,
 			   goalie = data$goalieNameForShot)
 }
+
+analysis.2015 = get.helpful.data(season.2015)
+analysis.2016 = get.helpful.data(season.2016)
+analysis.2017 = get.helpful.data(season.2017)
+analysis.2018 = get.helpful.data(season.2018)
 ```
+
+Now, we can remove incomplete cases and create our machine learning model's giant data set.
+
+```{r incomplete_cases}
+analysis.2015 = analysis.2015[complete.cases(analysis.2015),]
+analysis.2016 = analysis.2016[complete.cases(analysis.2016),]
+analysis.2017 = analysis.2017[complete.cases(analysis.2017),]
+analysis.all = rbind(analysis.2017, rbind(analysis.2016, analysis.2015))
+analysis.all = analysis.all[complete.cases(analysis.all),]
+analysis.2018 = analysis.2018[complete.cases(analysis.2018),]
+```
+
+Now, we need a few functions to help us select certain subsets of data. We'll define three functions: `get.team.data`, `get.shooter.data`, `get.goalie.data`.
+
+```{r data_functions}
+get.team.data = function(data, code) {
+	subset(data, team == code)
+}
+
+get.shooter.data = function(data, name) {
+	subset(data, shooter = name)
+}
+
+get.goalie.data = function(data, name) {
+	subset(data, goalie = name)
+}
+```
+
+# Creating the Models
