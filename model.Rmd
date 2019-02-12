@@ -78,12 +78,22 @@ get.helpful.data = function(data) {
 			   y = data$yCordAdjusted,
 			   angle = data$shotAngleAdjusted,
 			   dist = data$shotDistance,
-			   type = data$shotType,
+			   type = as.numeric(data$shotType),
 			   goal = data$goal,
 			   team = data$teamCode,
 			   shooter = data$shooterName,
 			   goalie = data$goalieNameForShot)
 }
+
+# type:
+# 1 -> empty
+# 2 -> BACK
+# 3 -> DEFL
+# 4 -> SLAP
+# 5 -> SNAP
+# 6 -> TIP
+# 7 -> WRAP
+# 8 -> WRIST
 
 analysis.2015 = get.helpful.data(season.2015)
 analysis.2016 = get.helpful.data(season.2016)
@@ -102,6 +112,12 @@ analysis.all = analysis.all[complete.cases(analysis.all),]
 analysis.2018 = analysis.2018[complete.cases(analysis.2018),]
 ```
 
+Here's what `analysis.2018` looks like:
+
+```{r view_analysis}
+analysis.2018
+```
+
 Now, we need a few functions to help us select certain subsets of data. We'll define three functions: `get.team.data`, `get.shooter.data`, `get.goalie.data`.
 
 ```{r data_functions}
@@ -110,12 +126,46 @@ get.team.data = function(data, code) {
 }
 
 get.shooter.data = function(data, name) {
-	subset(data, shooter = name)
+	subset(data, shooter == name)
 }
 
 get.goalie.data = function(data, name) {
-	subset(data, goalie = name)
+	subset(data, goalie == name)
 }
 ```
 
+# Calculating Statistics
+
+We can calculate a few statistics, like goal (effective) percentage for a certain shot. Let's write a function to do that right now.
+
+```{r goal_perc}
+calculate.goal.percentage = function(data) {
+	goals = sum(data$goal == 1)
+	total = nrow(data)
+	goals / total
+}
+```
+
+So, for example, Matt Murray's goal percentage against slap shots would be calculated as follows:
+
+```{r murray_slap}
+murray.2018 = get.goalie.data(analysis.2018, "Matt Murray")
+murray.2018.slap = subset(murray.2018, type == 4)
+murray.2018.slap.eff = calculate.goal.percentage(murray.2018.slap)
+```
+
+His goal percentage is `r murray.2018.slap.eff`.
+
+From a shooter's perspective, here is Sidney Crosby's effectiveness with his backhand.
+
+```{r crosby_back}
+crosby.2018 = get.shooter.data(analysis.2018, "Sidney Crosby")
+crosby.2018.back = subset(crosby.2018, type == 2)
+crosby.2018.back.eff = calculate.goal.percentage(crosby.2018.back)
+```
+
+His goal percentage is `r crosby.2018.back.eff`.
+
 # Creating the Models
+
+Using the `caret` package, we can build machine learning models to help us determine which shot type is best.
