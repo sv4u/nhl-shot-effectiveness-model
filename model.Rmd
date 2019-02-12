@@ -169,3 +169,30 @@ His goal percentage is `r crosby.2018.back.eff`.
 # Creating the Models
 
 Using the `caret` package, we can build machine learning models to help us determine which shot type is best.
+
+Let's get started with training our control.
+
+```{r control}
+control = trainControl(method = "repeatedcv", number = 5, repeats = 3)
+```
+
+Now we will train a few different types of models. Here is a list of the models we will train:
+
+- Neural Network
+- K Nearest Neighbors
+- Parellel Random Forest
+
+```{r models}
+model.nnet = train(goal ~ . -goal -team -shooter -goalie,
+				   data = analysis.all,
+				   method = "nnet",
+				   trControl = control)
+model.knn = train(goal ~ . -goal -team -shooter -goalie,
+				  data = analysis.all,
+				  method = "knn",
+				  trControl = control)
+model.prf = train(goal ~ . -goal -team -shooter -goalie,
+				  data = analysis.all,
+				  method = "parRF",
+				  trControl = control)
+```
