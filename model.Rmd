@@ -180,7 +180,6 @@ Now we will train a few different types of models. Here is a list of the models 
 
 - Neural Network
 - K Nearest Neighbors
-- Parellel Random Forest
 
 ```{r models}
 model.nnet = train(goal ~ . -goal -team -shooter -goalie,
@@ -190,9 +189,5 @@ model.nnet = train(goal ~ . -goal -team -shooter -goalie,
 model.knn = train(goal ~ . -goal -team -shooter -goalie,
 				  data = analysis.all,
 				  method = "knn",
-				  trControl = control)
-model.prf = train(goal ~ . -goal -team -shooter -goalie,
-				  data = analysis.all,
-				  method = "parRF",
 				  trControl = control)
 ```
