@@ -191,3 +191,7 @@ model.knn = train(goal ~ . -goal -team -shooter -goalie,
 				  method = "knn",
 				  trControl = control)
 ```
+
+Now our models have been made.
+
+# Testing the Models
