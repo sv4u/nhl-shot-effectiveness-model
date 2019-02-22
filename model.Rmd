@@ -195,3 +195,34 @@ model.knn = train(goal ~ . -goal -team -shooter -goalie,
 Now our models have been made.
 
 # Testing the Models
+
+Let's test our models on the 2018 data. Here's what the testing data looks like:
+
+```{r testing_data}
+analysis.2018
+```
+
+Now, let's get our predictions:
+
+```{r get_predictions}
+nnet.prediction = predict(model.nnet, newdata = analysis.2018)
+knn.prediction = predict(model.knn, newdata = analysis.2018)
+
+nnet.prediction.data = data.frame(analysis.2018)
+nnet.prediction.data$predict = nnet.prediction
+
+knn.prediction.data = data.frame(analysis.2018)
+knn.prediction.data$predict = knn.prediction
+```
+
+So, our Neural Network data looks like:
+
+```{r nnet_data}
+nnet.prediction.data
+```
+
+Our K-Nearest Neighbors data looks like:
+
+```{r knn_data}
+knn.prediction.data
+```
