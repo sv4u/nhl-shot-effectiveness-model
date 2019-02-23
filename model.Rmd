@@ -119,14 +119,6 @@ Now, we need a few functions to help us select certain subsets of data. We'll de
 get.team.data = function(data, code) {
 	subset(data, team == code)
 }
-
-get.shooter.data = function(data, name) {
-	subset(data, shooter == name)
-}
-
-get.goalie.data = function(data, name) {
-	subset(data, goalie == name)
-}
 ```
 
 # Calculating Statistics
@@ -141,25 +133,15 @@ calculate.goal.percentage = function(data) {
 }
 ```
 
-So, for example, Matt Murray's goal percentage against slap shots would be calculated as follows:
+So, for example, Penguins's goal percentage against slap shots would be calculated as follows:
 
 ```{r murray_slap}
-murray.2018 = get.goalie.data(analysis.2018, "Matt Murray")
-murray.2018.slap = subset(murray.2018, type == 4)
-murray.2018.slap.eff = calculate.goal.percentage(murray.2018.slap)
+penguins.2018 = get.team.data(analysis.2018, "PIT")
+penguins.2018.slap = subset(penguins.2018, type == 4)
+penguins.2018.slap.eff = calculate.goal.percentage(penguins.2018.slap)
 ```
 
 His goal percentage is `r murray.2018.slap.eff`.
-
-From a shooter's perspective, here is Sidney Crosby's effectiveness with his backhand.
-
-```{r crosby_back}
-crosby.2018 = get.shooter.data(analysis.2018, "Sidney Crosby")
-crosby.2018.back = subset(crosby.2018, type == 2)
-crosby.2018.back.eff = calculate.goal.percentage(crosby.2018.back)
-```
-
-His goal percentage is `r crosby.2018.back.eff`.
 
 # Creating the Models
 
