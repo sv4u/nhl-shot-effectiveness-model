@@ -212,8 +212,8 @@ Let us visualize how distance and the goal prediction are related.
 make.knn.dist.plot = function(data, primary, secondary, team) {
 	name = paste(team, "Predicted Goal Probability versus Distance (KNN)", sep = " ")
 	plot = ggplot(data) +
-		geom_smooth(aes(x = dist, y = predict),
-				 fill = primary, color = secondary) +
+		geom_smooth(aes(x = dist, y = predict), method = "auto",
+				 fill = secondary, color = primary) +
 		labs(title = name,
 			 x = "Distance from Net",
 			 y = "Probability of Scoring") +
@@ -231,6 +231,14 @@ Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
 ```{r pit_data}
 pit.nnet = get.team.data(nnet.prediction.data, "PIT")
 pit.knn = get.team.data(knn.prediction.data, "PIT")
+```
+
+Here is how the Penguins did with shots versus goal probability from the KNN model.
+
+```{r pit_knn_dist}
+pit.knn.dist = make.knn.dist.plot(pit.knn, "#000000", "#FCB514", "PIT")
+
+pit.knn.dist
 ```
 
 ## Vegas Golden Knights
