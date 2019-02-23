@@ -67,10 +67,7 @@ Here is a table of all the columns we shall keep and what we shall rename them t
 | `shotAngleAdjusted` | `angle` |
 | `shotDistance` | `dist` |
 | `teamCode` | `team` |
-| `shooterName` | `shooter` |
 | `shotType` | `type` |
-| `goalieNameForShot` | `goalie` |
-| `goal` | `goal` |
 
 ```{r get_helpful_data}
 get.helpful.data = function(data) {
@@ -80,9 +77,7 @@ get.helpful.data = function(data) {
 			   dist = data$shotDistance,
 			   type = as.numeric(data$shotType),
 			   goal = data$goal,
-			   team = data$teamCode,
-			   shooter = data$shooterName,
-			   goalie = data$goalieNameForShot)
+			   team = data$teamCode)
 }
 
 # type:
@@ -182,11 +177,11 @@ Now we will train a few different types of models. Here is a list of the models 
 - K Nearest Neighbors
 
 ```{r models}
-model.nnet = train(goal ~ . -goal -team -shooter -goalie,
+model.nnet = train(goal ~ . -goal -team,
 				   data = analysis.all,
 				   method = "nnet",
 				   trControl = control)
-model.knn = train(goal ~ . -goal -team -shooter -goalie,
+model.knn = train(goal ~ . -goal -team,
 				  data = analysis.all,
 				  method = "knn",
 				  trControl = control)
@@ -226,3 +221,11 @@ Our K-Nearest Neighbors data looks like:
 ```{r knn_data}
 knn.prediction.data
 ```
+
+# Examples {.tabset .tabset-fade}
+
+## Pittsburgh Penguins
+
+## Vegas Golden Knights
+
+## Winnipeg Jets
