@@ -204,9 +204,34 @@ Our K-Nearest Neighbors data looks like:
 knn.prediction.data
 ```
 
+# Visualizing the Predictions
+
+Let us visualize how distance and the goal prediction are related.
+
+```{r vis_knn_dist}
+make.knn.dist.plot = function(data, primary, secondary, team) {
+	name = paste(team, "Predicted Goal Probability versus Distance (KNN)", sep = " ")
+	plot = ggplot(data) +
+		geom_smooth(aes(x = dist, y = predict),
+				 fill = primary, color = secondary) +
+		labs(title = name,
+			 x = "Distance from Net",
+			 y = "Probability of Scoring") +
+		theme_minimal()
+	plot
+}
+```
+
 # Examples {.tabset .tabset-fade}
 
 ## Pittsburgh Penguins
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r pit_data}
+pit.nnet = get.team.data(nnet.prediction.data, "PIT")
+pit.knn = get.team.data(knn.prediction.data, "PIT")
+```
 
 ## Vegas Golden Knights
 
