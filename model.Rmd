@@ -316,7 +316,6 @@ pit.nnet.dist
 
 Now let's look at shot type versus goal probability.
 
-
 ```{r pit_knn_type}
 pit.knn.type = make.knn.type.plot(pit.knn, "#000000", "#FCB514", "PIT")
 
@@ -333,4 +332,591 @@ pit.nnet.type
 
 ## Vegas Golden Knights
 
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r vgk_data}
+vgk.nnet = get.team.data(nnet.prediction.data, "VGK")
+vgk.knn = get.team.data(knn.prediction.data, "VGK")
+```
+
+Let's just visualize our shots type data.
+
+```{r vgk_type_freq}
+vgk.type.freq = make.type.freq.plot(vgk.nnet, "#B4975A", "#333F42", "VGK")
+
+vgk.type.freq
+```
+
+Here is how the Golden Knights did with shots versus goal probability from the KNN model.
+
+```{r vgk_knn_dist}
+vgk.knn.dist = make.knn.dist.plot(vgk.knn, "#B4975A", "#333F42", "VGK")
+
+vgk.knn.dist
+```
+
+And now with the neural network.
+
+```{r vgk_nnet_dist}
+vgk.nnet.dist = make.nnet.dist.plot(vgk.knn, "#B4975A", "#333F42", "VGK")
+
+vgk.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r vgk_knn_type}
+vgk.knn.type = make.knn.type.plot(vgk.knn, "#B4975A", "#333F42", "VGK")
+
+vgk.knn.type
+```
+
+And now with the neural network.
+
+```{r vgk_nnet_type}
+vgk.nnet.type = make.nnet.type.plot(vgk.knn, "#B4975A", "#333F42", "VGK")
+
+vgk.nnet.type
+```
+
 ## Winnipeg Jets
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r wpg_data}
+wpg.nnet = get.team.data(nnet.prediction.data, "WPG")
+wpg.knn = get.team.data(knn.prediction.data, "WPG")
+```
+
+Let's just visualize our shots type data.
+
+```{r wpg_type_freq}
+wpg.type.freq = make.type.freq.plot(wpg.nnet, "#041E42", "#004C97", "WPG")
+
+wpg.type.freq
+```
+
+Here is how the Jets did with shots versus goal probability from the KNN model.
+
+```{r wpg_knn_dist}
+wpg.knn.dist = make.knn.dist.plot(wpg.knn, "#041E42", "#004C97", "WPG")
+
+wpg.knn.dist
+```
+
+And now with the neural network.
+
+```{r wpg_nnet_dist}
+wpg.nnet.dist = make.nnet.dist.plot(wpg.knn, "#041E42", "#004C97", "WPG")
+
+wpg.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r wpg_knn_type}
+wpg.knn.type = make.knn.type.plot(wpg.knn, "#041E42", "#004C97", "WPG")
+
+wpg.knn.type
+```
+
+And now with the neural network.
+
+```{r wpg_nnet_type}
+wpg.nnet.type = make.nnet.type.plot(wpg.knn, "#041E42", "#004C97", "WPG")
+
+wpg.nnet.type
+```
+
+## Tampa Bay Lightning
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r tbl_data}
+tbl.nnet = get.team.data(nnet.prediction.data, "T.B")
+tbl.knn = get.team.data(knn.prediction.data, "T.B")
+```
+
+Let's just visualize our shots type data.
+
+```{r tbl_type_freq}
+tbl.type.freq = make.type.freq.plot(tbl.nnet, "#002868", "#AAB1BF", "T.B")
+
+tbl.type.freq
+```
+
+Here is how the Lightning did with shots versus goal probability from the KNN model.
+
+```{r tbl_knn_dist}
+tbl.knn.dist = make.knn.dist.plot(tbl.knn, "#002868", "#AAB1BF", "T.B")
+
+tbl.knn.dist
+```
+
+And now with the neural network.
+
+```{r tbl_nnet_dist}
+tbl.nnet.dist = make.nnet.dist.plot(tbl.knn, "#002868", "#AAB1BF", "T.B")
+
+tbl.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r tbl_knn_type}
+tbl.knn.type = make.knn.type.plot(tbl.knn, "#002868", "#AAB1BF", "T.B")
+
+tbl.knn.type
+```
+
+And now with the neural network.
+
+```{r tbl_nnet_type}
+tbl.nnet.type = make.nnet.type.plot(tbl.knn, "#002868", "#AAB1BF", "T.B")
+
+tbl.nnet.type
+```
+
+## Toronto Maple Leafs
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r tor_data}
+tor.nnet = get.team.data(nnet.prediction.data, "TOR")
+tor.knn = get.team.data(knn.prediction.data, "TOR")
+```
+
+Let's just visualize our shots type data.
+
+```{r tor_type_freq}
+tor.type.freq = make.type.freq.plot(tor.nnet, "#003E7E", "#FFFFFF", "TOR")
+
+tor.type.freq
+```
+
+Here is how the Maple Leafs did with shots versus goal probability from the KNN model.
+
+```{r tor_knn_dist}
+tor.knn.dist = make.knn.dist.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+
+tor.knn.dist
+```
+
+And now with the neural network.
+
+```{r tor_nnet_dist}
+tor.nnet.dist = make.nnet.dist.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+
+tor.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r tor_knn_type}
+tor.knn.type = make.knn.type.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+
+tor.knn.type
+```
+
+And now with the neural network.
+
+```{r tor_nnet_type}
+tor.nnet.type = make.nnet.type.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+
+tor.nnet.type
+```
+
+## Colorado Avalance
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r col_data}
+col.nnet = get.team.data(nnet.prediction.data, "COL")
+col.knn = get.team.data(knn.prediction.data, "COL")
+```
+
+Let's just visualize our shots type data.
+
+```{r col_type_freq}
+col.type.freq = make.type.freq.plot(col.nnet, "#6F263D", "#236192", "COL")
+
+col.type.freq
+```
+
+Here is how the Avalance did with shots versus goal probability from the KNN model.
+
+```{r col_knn_dist}
+col.knn.dist = make.knn.dist.plot(col.knn, "#6F263D", "#236192", "COL")
+
+col.knn.dist
+```
+
+And now with the neural network.
+
+```{r col_nnet_dist}
+col.nnet.dist = make.nnet.dist.plot(col.knn, "#6F263D", "#236192", "COL")
+
+col.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r col_knn_type}
+col.knn.type = make.knn.type.plot(col.knn, "#6F263D", "#236192", "COL")
+
+col.knn.type
+```
+
+And now with the neural network.
+
+```{r col_nnet_type}
+col.nnet.type = make.nnet.type.plot(col.knn, "#6F263D", "#236192", "COL")
+
+col.nnet.type
+```
+
+## Calgary Flames
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r cgy_data}
+cgy.nnet = get.team.data(nnet.prediction.data, "CGY")
+cgy.knn = get.team.data(knn.prediction.data, "CGY")
+```
+
+Let's just visualize our shots type data.
+
+```{r cgy_type_freq}
+cgy.type.freq = make.type.freq.plot(cgy.nnet, "#C8102E", "#F1BE48", "CGY")
+
+cgy.type.freq
+```
+
+Here is how the Flames did with shots versus goal probability from the KNN model.
+
+```{r cgy_knn_dist}
+cgy.knn.dist = make.knn.dist.plot(cgy.knn, "#C8102E", "#F1BE48", "CGY")
+
+cgy.knn.dist
+```
+
+And now with the neural network.
+
+```{r cgy_nnet_dist}
+cgy.nnet.dist = make.nnet.dist.plot(cgy.knn, "#C8102E", "#F1BE48", "CGY")
+
+cgy.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r cgy_knn_type}
+cgy.knn.type = make.knn.type.plot(cgy.knn, "#C8102E", "#F1BE48", "CGY")
+
+cgy.knn.type
+```
+
+And now with the neural network.
+
+```{r cgy_nnet_type}
+cgy.nnet.type = make.nnet.type.plot(cgy.knn, "#C8102E", "#F1BE48", "CGY")
+
+cgy.nnet.type
+```
+
+## New York Islanders
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r nyi_data}
+nyi.nnet = get.team.data(nnet.prediction.data, "NYI")
+nyi.knn = get.team.data(knn.prediction.data, "NYI")
+```
+
+Let's just visualize our shots type data.
+
+```{r nyi_type_freq}
+nyi.type.freq = make.type.freq.plot(nyi.nnet, "#00539B", "#F47D30", "NYI")
+
+nyi.type.freq
+```
+
+Here is how the Islanders did with shots versus goal probability from the KNN model.
+
+```{r nyi_knn_dist}
+nyi.knn.dist = make.knn.dist.plot(nyi.knn, "#00539B", "#F47D30", "NYI")
+
+nyi.knn.dist
+```
+
+And now with the neural network.
+
+```{r nyi_nnet_dist}
+nyi.nnet.dist = make.nnet.dist.plot(nyi.knn, "#00539B", "#F47D30", "NYI")
+
+nyi.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r nyi_knn_type}
+nyi.knn.type = make.knn.type.plot(nyi.knn, "#00539B", "#F47D30", "NYI")
+
+nyi.knn.type
+```
+
+And now with the neural network.
+
+```{r nyi_nnet_type}
+nyi.nnet.type = make.nnet.type.plot(nyi.knn, "#00539B", "#F47D30", "NYI")
+
+nyi.nnet.type
+```
+
+## Washington Capitals
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r wsh_data}
+wsh.nnet = get.team.data(nnet.prediction.data, "WSH")
+wsh.knn = get.team.data(knn.prediction.data, "WSH")
+```
+
+Let's just visualize our shots type data.
+
+```{r wsh_type_freq}
+wsh.type.freq = make.type.freq.plot(wsh.nnet, "#041E42", "#C8102E", "WSH")
+
+wsh.type.freq
+```
+
+Here is how the Cawshals did with shots versus goal probability from the KNN model.
+
+```{r wsh_knn_dist}
+wsh.knn.dist = make.knn.dist.plot(wsh.knn, "#041E42", "#C8102E", "WSH")
+
+wsh.knn.dist
+```
+
+And now with the neural network.
+
+```{r wsh_nnet_dist}
+wsh.nnet.dist = make.nnet.dist.plot(wsh.knn, "#041E42", "#C8102E", "WSH")
+
+wsh.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r wsh_knn_type}
+wsh.knn.type = make.knn.type.plot(wsh.knn, "#041E42", "#C8102E", "WSH")
+
+wsh.knn.type
+```
+
+And now with the neural network.
+
+```{r wsh_nnet_type}
+wsh.nnet.type = make.nnet.type.plot(wsh.knn, "#041E42", "#C8102E", "WSH")
+
+wsh.nnet.type
+```
+
+## Philadelphia Flyers
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r phi_data}
+phi.nnet = get.team.data(nnet.prediction.data, "PHI")
+phi.knn = get.team.data(knn.prediction.data, "PHI")
+```
+
+Let's just visualize our shots type data.
+
+```{r phi_type_freq}
+phi.type.freq = make.type.freq.plot(phi.nnet, "#F74902", "#000000", "PHI")
+
+phi.type.freq
+```
+
+Here is how the Flyers did with shots versus goal probability from the KNN model.
+
+```{r phi_knn_dist}
+phi.knn.dist = make.knn.dist.plot(phi.knn, "#F74902", "#000000", "PHI")
+
+phi.knn.dist
+```
+
+And now with the neural network.
+
+```{r phi_nnet_dist}
+phi.nnet.dist = make.nnet.dist.plot(phi.knn, "#F74902", "#000000", "PHI")
+
+phi.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+```{r phi_knn_type}
+phi.knn.type = make.knn.type.plot(phi.knn, "#F74902", "#000000", "PHI")
+
+phi.knn.type
+```
+
+And now with the neural network.
+
+```{r phi_nnet_type}
+phi.nnet.type = make.nnet.type.plot(phi.knn, "#F74902", "#000000", "PHI")
+
+phi.nnet.type
+```
+
+## Boston Bruins
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r bos_data}
+bos.nnet = get.team.data(nnet.prediction.data, "BOS")
+bos.knn = get.team.data(knn.prediction.data, "BOS")
+```
+
+Let's just visualize our shots type data.
+
+```{r bos_type_freq}
+bos.type.freq = make.type.freq.plot(bos.nnet, "#FFB81C", "#000000", "BOS")
+
+bos.type.freq
+```
+
+Here is how the Bruins did with shots versus goal probability from the KNN model.
+
+```{r bos_knn_dist}
+bos.knn.dist = make.knn.dist.plot(bos.knn, "#FFB81C", "#000000", "BOS")
+
+bos.knn.dist
+```
+
+And now with the neural network.
+
+```{r bos_nnet_dist}
+bos.nnet.dist = make.nnet.dist.plot(bos.knn, "#FFB81C", "#000000", "BOS")
+
+bos.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+
+```{r bos_knn_type}
+bos.knn.type = make.knn.type.plot(bos.knn, "#FFB81C", "#000000", "BOS")
+
+bos.knn.type
+```
+
+And now with the neural network.
+
+```{r bos_nnet_type}
+bos.nnet.type = make.nnet.type.plot(bos.knn, "#FFB81C", "#000000", "BOS")
+
+bos.nnet.type
+```
+
+## San Jose Sharks
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r sjs_data}
+sjs.nnet = get.team.data(nnet.prediction.data, "S.J")
+sjs.knn = get.team.data(knn.prediction.data, "S.J")
+```
+
+Let's just visualize our shots type data.
+
+```{r sjs_type_freq}
+sjs.type.freq = make.type.freq.plot(sjs.nnet, "#006D75", "#EA7200", "S.J")
+
+sjs.type.freq
+```
+
+Here is how the Sharks did with shots versus goal probability from the KNN model.
+
+```{r sjs_knn_dist}
+sjs.knn.dist = make.knn.dist.plot(sjs.knn, "#006D75", "#EA7200", "S.J")
+
+sjs.knn.dist
+```
+
+And now with the neural network.
+
+```{r sjs_nnet_dist}
+sjs.nnet.dist = make.nnet.dist.plot(sjs.knn, "#006D75", "#EA7200", "S.J")
+
+sjs.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+
+```{r sjs_knn_type}
+sjs.knn.type = make.knn.type.plot(sjs.knn, "#006D75", "#EA7200", "S.J")
+
+sjs.knn.type
+```
+
+And now with the neural network.
+
+```{r sjs_nnet_type}
+sjs.nnet.type = make.nnet.type.plot(sjs.knn, "#006D75", "#EA7200", "S.J")
+
+sjs.nnet.type
+```
+
+## Dallas Stars
+
+Let's get our data from the Neural Network and K-Nearest Neighbors algorithms.
+
+```{r dal_data}
+dal.nnet = get.team.data(nnet.prediction.data, "DAL")
+dal.knn = get.team.data(knn.prediction.data, "DAL")
+```
+
+Let's just visualize our shots type data.
+
+```{r dal_type_freq}
+dal.type.freq = make.type.freq.plot(dal.nnet, "#006847", "#8F8F8C", "DAL")
+
+dal.type.freq
+```
+
+Here is how the Stars did with shots versus goal probability from the KNN model.
+
+```{r dal_knn_dist}
+dal.knn.dist = make.knn.dist.plot(dal.knn, "#006847", "#8F8F8C", "DAL")
+
+dal.knn.dist
+```
+
+And now with the neural network.
+
+```{r dal_nnet_dist}
+dal.nnet.dist = make.nnet.dist.plot(dal.knn, "#006847", "#8F8F8C", "DAL")
+
+dal.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+
+```{r dal_knn_type}
+dal.knn.type = make.knn.type.plot(dal.knn, "#006847", "#8F8F8C", "DAL")
+
+dal.knn.type
+```
+
+And now with the neural network.
+
+```{r dal_nnet_type}
+dal.nnet.type = make.nnet.type.plot(dal.knn, "#006847", "#8F8F8C", "DAL")
+
+dal.nnet.type
+```
