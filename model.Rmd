@@ -75,7 +75,8 @@ get.helpful.data = function(data) {
 			   y = data$yCordAdjusted,
 			   angle = data$shotAngleAdjusted,
 			   dist = data$shotDistance,
-			   type = as.numeric(data$shotType),
+			   type = data$shotType,
+			   typeNum = as.numeric(data$shotType),
 			   goal = data$goal,
 			   team = data$teamCode)
 }
@@ -141,7 +142,7 @@ penguins.2018.slap = subset(penguins.2018, type == 4)
 penguins.2018.slap.eff = calculate.goal.percentage(penguins.2018.slap)
 ```
 
-His goal percentage is `r murray.2018.slap.eff`.
+Their goal percentage is `r penguins.2018.slap.eff`.
 
 # Creating the Models
 
@@ -159,11 +160,11 @@ Now we will train a few different types of models. Here is a list of the models 
 - K Nearest Neighbors
 
 ```{r models}
-model.nnet = train(goal ~ . -goal -team,
+model.nnet = train(goal ~ . -goal -team -type,
 				   data = analysis.all,
 				   method = "nnet",
 				   trControl = control)
-model.knn = train(goal ~ . -goal -team,
+model.knn = train(goal ~ . -goal -team -type,
 				  data = analysis.all,
 				  method = "knn",
 				  trControl = control)
@@ -222,6 +223,62 @@ make.knn.dist.plot = function(data, primary, secondary, team) {
 }
 ```
 
+Here's the same function, but for the neural network data.
+
+```{r vis_nnet_dist}
+make.nnet.dist.plot = function(data, primary, secondary, team) {
+	name = paste(team, "Predicted Goal Probability versus Distance (NNet)", sep = " ")
+	plot = ggplot(data) +
+		geom_smooth(aes(x = dist, y = predict), method = "auto",
+				 fill = secondary, color = primary) +
+		labs(title = name,
+			 x = "Distance from Net",
+			 y = "Probability of Scoring") +
+		theme_minimal()
+	plot
+}
+```
+
+Now let's visualize the frequency of a shot.
+
+```{r vis_type_freq}
+make.type.freq.plot = function(data, primary, secondary, team) {
+  name = paste(team, "Frequency per Shot Type", seq = " ")
+  plot = ggplot(data) +
+    geom_bar(aes(x = type), stat = "count",
+                   fill = secondary, color = primary) +
+    labs(title = name, x = "Shot Type", y = "Count") +
+    theme_minimal()
+  plot
+}
+```
+
+The next graph is comparing type and goal prediction.
+
+```{r vis_knn_type}
+make.knn.type.plot = function(data, primary, secondary, team) {
+  name = paste(team, "Predicted Goal versus Shot Type (KNN)", seq = " ")
+  plot = ggplot(data) +
+    geom_jitter(aes(x = type, y = predict), fill = primary, color = secondary) +
+    labs(title = name, x = "Shot Type", y = "Probability of Scoring") +
+    theme_minimal()
+  plot
+}
+```
+
+Here is the neural net flavor of the last function.
+
+```{r vis_nnet_type}
+make.nnet.type.plot = function(data, primary, secondary, team) {
+  name = paste(team, "Predicted Goal versus Shot Type (NNet)", seq = " ")
+  plot = ggplot(data) +
+    geom_jitter(aes(x = type, y = predict), fill = primary, color = secondary) +
+    labs(title = name, x = "Shot Type", y = "Probability of Scoring") +
+    theme_minimal()
+  plot
+}
+```
+
 # Examples {.tabset .tabset-fade}
 
 ## Pittsburgh Penguins
@@ -233,12 +290,45 @@ pit.nnet = get.team.data(nnet.prediction.data, "PIT")
 pit.knn = get.team.data(knn.prediction.data, "PIT")
 ```
 
+Let's just visualize our shots type data.
+
+```{r pit_type_freq}
+pit.type.freq = make.type.freq.plot(pit.nnet, "#000000", "#FCB514", "PIT")
+
+pit.type.freq
+```
+
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
 ```{r pit_knn_dist}
 pit.knn.dist = make.knn.dist.plot(pit.knn, "#000000", "#FCB514", "PIT")
 
 pit.knn.dist
+```
+
+And now with the neural network.
+
+```{r pit_nnet_dist}
+pit.nnet.dist = make.nnet.dist.plot(pit.knn, "#000000", "#FCB514", "PIT")
+
+pit.nnet.dist
+```
+
+Now let's look at shot type versus goal probability.
+
+
+```{r pit_knn_type}
+pit.knn.type = make.knn.type.plot(pit.knn, "#000000", "#FCB514", "PIT")
+
+pit.knn.type
+```
+
+And now with the neural network.
+
+```{r pit_nnet_type}
+pit.nnet.type = make.nnet.type.plot(pit.knn, "#000000", "#FCB514", "PIT")
+
+pit.nnet.type
 ```
 
 ## Vegas Golden Knights
