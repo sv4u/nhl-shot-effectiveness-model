@@ -138,7 +138,7 @@ So, for example, Penguins's goal percentage against slap shots would be calculat
 
 ```{r murray_slap}
 penguins.2018 = get.team.data(analysis.2018, "PIT")
-penguins.2018.slap = subset(penguins.2018, type == 4)
+penguins.2018.slap = subset(penguins.2018, typeNum == 4)
 penguins.2018.slap.eff = calculate.goal.percentage(penguins.2018.slap)
 ```
 
@@ -309,7 +309,7 @@ pit.knn.dist
 And now with the neural network.
 
 ```{r pit_nnet_dist}
-pit.nnet.dist = make.nnet.dist.plot(pit.knn, "#000000", "#FCB514", "PIT")
+pit.nnet.dist = make.nnet.dist.plot(pit.nnet, "#000000", "#FCB514", "PIT")
 
 pit.nnet.dist
 ```
@@ -325,7 +325,7 @@ pit.knn.type
 And now with the neural network.
 
 ```{r pit_nnet_type}
-pit.nnet.type = make.nnet.type.plot(pit.knn, "#000000", "#FCB514", "PIT")
+pit.nnet.type = make.nnet.type.plot(pit.nnet, "#000000", "#FCB514", "PIT")
 
 pit.nnet.type
 ```
@@ -358,7 +358,7 @@ vgk.knn.dist
 And now with the neural network.
 
 ```{r vgk_nnet_dist}
-vgk.nnet.dist = make.nnet.dist.plot(vgk.knn, "#B4975A", "#333F42", "VGK")
+vgk.nnet.dist = make.nnet.dist.plot(vgk.nnet, "#B4975A", "#333F42", "VGK")
 
 vgk.nnet.dist
 ```
@@ -374,7 +374,7 @@ vgk.knn.type
 And now with the neural network.
 
 ```{r vgk_nnet_type}
-vgk.nnet.type = make.nnet.type.plot(vgk.knn, "#B4975A", "#333F42", "VGK")
+vgk.nnet.type = make.nnet.type.plot(vgk.nnet, "#B4975A", "#333F42", "VGK")
 
 vgk.nnet.type
 ```
@@ -407,7 +407,7 @@ wpg.knn.dist
 And now with the neural network.
 
 ```{r wpg_nnet_dist}
-wpg.nnet.dist = make.nnet.dist.plot(wpg.knn, "#041E42", "#004C97", "WPG")
+wpg.nnet.dist = make.nnet.dist.plot(wpg.nnet, "#041E42", "#004C97", "WPG")
 
 wpg.nnet.dist
 ```
@@ -423,7 +423,7 @@ wpg.knn.type
 And now with the neural network.
 
 ```{r wpg_nnet_type}
-wpg.nnet.type = make.nnet.type.plot(wpg.knn, "#041E42", "#004C97", "WPG")
+wpg.nnet.type = make.nnet.type.plot(wpg.nnet, "#041E42", "#004C97", "WPG")
 
 wpg.nnet.type
 ```
@@ -456,7 +456,7 @@ tbl.knn.dist
 And now with the neural network.
 
 ```{r tbl_nnet_dist}
-tbl.nnet.dist = make.nnet.dist.plot(tbl.knn, "#002868", "#AAB1BF", "T.B")
+tbl.nnet.dist = make.nnet.dist.plot(tbl.nnet, "#002868", "#AAB1BF", "T.B")
 
 tbl.nnet.dist
 ```
@@ -472,7 +472,7 @@ tbl.knn.type
 And now with the neural network.
 
 ```{r tbl_nnet_type}
-tbl.nnet.type = make.nnet.type.plot(tbl.knn, "#002868", "#AAB1BF", "T.B")
+tbl.nnet.type = make.nnet.type.plot(tbl.nnet, "#002868", "#AAB1BF", "T.B")
 
 tbl.nnet.type
 ```
@@ -489,7 +489,7 @@ tor.knn = get.team.data(knn.prediction.data, "TOR")
 Let's just visualize our shots type data.
 
 ```{r tor_type_freq}
-tor.type.freq = make.type.freq.plot(tor.nnet, "#003E7E", "#FFFFFF", "TOR")
+tor.type.freq = make.type.freq.plot(tor.nnet, "#003E7E", "#D3D3D3", "TOR")
 
 tor.type.freq
 ```
@@ -497,7 +497,7 @@ tor.type.freq
 Here is how the Maple Leafs did with shots versus goal probability from the KNN model.
 
 ```{r tor_knn_dist}
-tor.knn.dist = make.knn.dist.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+tor.knn.dist = make.knn.dist.plot(tor.knn, "#003E7E", "#D3D3D3", "TOR")
 
 tor.knn.dist
 ```
@@ -505,7 +505,7 @@ tor.knn.dist
 And now with the neural network.
 
 ```{r tor_nnet_dist}
-tor.nnet.dist = make.nnet.dist.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+tor.nnet.dist = make.nnet.dist.plot(tor.nnet, "#003E7E", "#D3D3D3", "TOR")
 
 tor.nnet.dist
 ```
@@ -513,7 +513,7 @@ tor.nnet.dist
 Now let's look at shot type versus goal probability.
 
 ```{r tor_knn_type}
-tor.knn.type = make.knn.type.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+tor.knn.type = make.knn.type.plot(tor.knn, "#003E7E", "#D3D3D3", "TOR")
 
 tor.knn.type
 ```
@@ -521,7 +521,7 @@ tor.knn.type
 And now with the neural network.
 
 ```{r tor_nnet_type}
-tor.nnet.type = make.nnet.type.plot(tor.knn, "#003E7E", "#FFFFFF", "TOR")
+tor.nnet.type = make.nnet.type.plot(tor.nnet, "#003E7E", "#D3D3D3", "TOR")
 
 tor.nnet.type
 ```
@@ -554,7 +554,7 @@ col.knn.dist
 And now with the neural network.
 
 ```{r col_nnet_dist}
-col.nnet.dist = make.nnet.dist.plot(col.knn, "#6F263D", "#236192", "COL")
+col.nnet.dist = make.nnet.dist.plot(col.nnet, "#6F263D", "#236192", "COL")
 
 col.nnet.dist
 ```
@@ -570,7 +570,7 @@ col.knn.type
 And now with the neural network.
 
 ```{r col_nnet_type}
-col.nnet.type = make.nnet.type.plot(col.knn, "#6F263D", "#236192", "COL")
+col.nnet.type = make.nnet.type.plot(col.nnet, "#6F263D", "#236192", "COL")
 
 col.nnet.type
 ```
@@ -603,7 +603,7 @@ cgy.knn.dist
 And now with the neural network.
 
 ```{r cgy_nnet_dist}
-cgy.nnet.dist = make.nnet.dist.plot(cgy.knn, "#C8102E", "#F1BE48", "CGY")
+cgy.nnet.dist = make.nnet.dist.plot(cgy.nnet, "#C8102E", "#F1BE48", "CGY")
 
 cgy.nnet.dist
 ```
@@ -619,7 +619,7 @@ cgy.knn.type
 And now with the neural network.
 
 ```{r cgy_nnet_type}
-cgy.nnet.type = make.nnet.type.plot(cgy.knn, "#C8102E", "#F1BE48", "CGY")
+cgy.nnet.type = make.nnet.type.plot(cgy.nnet, "#C8102E", "#F1BE48", "CGY")
 
 cgy.nnet.type
 ```
@@ -652,7 +652,7 @@ nyi.knn.dist
 And now with the neural network.
 
 ```{r nyi_nnet_dist}
-nyi.nnet.dist = make.nnet.dist.plot(nyi.knn, "#00539B", "#F47D30", "NYI")
+nyi.nnet.dist = make.nnet.dist.plot(nyi.nnet, "#00539B", "#F47D30", "NYI")
 
 nyi.nnet.dist
 ```
@@ -668,7 +668,7 @@ nyi.knn.type
 And now with the neural network.
 
 ```{r nyi_nnet_type}
-nyi.nnet.type = make.nnet.type.plot(nyi.knn, "#00539B", "#F47D30", "NYI")
+nyi.nnet.type = make.nnet.type.plot(nyi.nnet, "#00539B", "#F47D30", "NYI")
 
 nyi.nnet.type
 ```
@@ -701,7 +701,7 @@ wsh.knn.dist
 And now with the neural network.
 
 ```{r wsh_nnet_dist}
-wsh.nnet.dist = make.nnet.dist.plot(wsh.knn, "#041E42", "#C8102E", "WSH")
+wsh.nnet.dist = make.nnet.dist.plot(wsh.nnet, "#041E42", "#C8102E", "WSH")
 
 wsh.nnet.dist
 ```
@@ -717,7 +717,7 @@ wsh.knn.type
 And now with the neural network.
 
 ```{r wsh_nnet_type}
-wsh.nnet.type = make.nnet.type.plot(wsh.knn, "#041E42", "#C8102E", "WSH")
+wsh.nnet.type = make.nnet.type.plot(wsh.nnet, "#041E42", "#C8102E", "WSH")
 
 wsh.nnet.type
 ```
@@ -750,7 +750,7 @@ phi.knn.dist
 And now with the neural network.
 
 ```{r phi_nnet_dist}
-phi.nnet.dist = make.nnet.dist.plot(phi.knn, "#F74902", "#000000", "PHI")
+phi.nnet.dist = make.nnet.dist.plot(phi.nnet, "#F74902", "#000000", "PHI")
 
 phi.nnet.dist
 ```
@@ -766,7 +766,7 @@ phi.knn.type
 And now with the neural network.
 
 ```{r phi_nnet_type}
-phi.nnet.type = make.nnet.type.plot(phi.knn, "#F74902", "#000000", "PHI")
+phi.nnet.type = make.nnet.type.plot(phi.nnet, "#F74902", "#000000", "PHI")
 
 phi.nnet.type
 ```
@@ -799,7 +799,7 @@ bos.knn.dist
 And now with the neural network.
 
 ```{r bos_nnet_dist}
-bos.nnet.dist = make.nnet.dist.plot(bos.knn, "#FFB81C", "#000000", "BOS")
+bos.nnet.dist = make.nnet.dist.plot(bos.nnet, "#FFB81C", "#000000", "BOS")
 
 bos.nnet.dist
 ```
@@ -816,7 +816,7 @@ bos.knn.type
 And now with the neural network.
 
 ```{r bos_nnet_type}
-bos.nnet.type = make.nnet.type.plot(bos.knn, "#FFB81C", "#000000", "BOS")
+bos.nnet.type = make.nnet.type.plot(bos.nnet, "#FFB81C", "#000000", "BOS")
 
 bos.nnet.type
 ```
@@ -849,7 +849,7 @@ sjs.knn.dist
 And now with the neural network.
 
 ```{r sjs_nnet_dist}
-sjs.nnet.dist = make.nnet.dist.plot(sjs.knn, "#006D75", "#EA7200", "S.J")
+sjs.nnet.dist = make.nnet.dist.plot(sjs.nnet, "#006D75", "#EA7200", "S.J")
 
 sjs.nnet.dist
 ```
@@ -866,7 +866,7 @@ sjs.knn.type
 And now with the neural network.
 
 ```{r sjs_nnet_type}
-sjs.nnet.type = make.nnet.type.plot(sjs.knn, "#006D75", "#EA7200", "S.J")
+sjs.nnet.type = make.nnet.type.plot(sjs.nnet, "#006D75", "#EA7200", "S.J")
 
 sjs.nnet.type
 ```
@@ -899,7 +899,7 @@ dal.knn.dist
 And now with the neural network.
 
 ```{r dal_nnet_dist}
-dal.nnet.dist = make.nnet.dist.plot(dal.knn, "#006847", "#8F8F8C", "DAL")
+dal.nnet.dist = make.nnet.dist.plot(dal.nnet, "#006847", "#8F8F8C", "DAL")
 
 dal.nnet.dist
 ```
@@ -916,7 +916,7 @@ dal.knn.type
 And now with the neural network.
 
 ```{r dal_nnet_type}
-dal.nnet.type = make.nnet.type.plot(dal.knn, "#006847", "#8F8F8C", "DAL")
+dal.nnet.type = make.nnet.type.plot(dal.nnet, "#006847", "#8F8F8C", "DAL")
 
 dal.nnet.type
 ```
