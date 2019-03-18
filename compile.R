@@ -1,3 +1,8 @@
 library(rmarkdown)
 
+this.dir <- dirname(parent.frame(2)$ofile)
+setwd(this.dir)
+
+rm(list = ls())
+
 render("model.Rmd", output_dir = "docs", quiet = FALSE)
