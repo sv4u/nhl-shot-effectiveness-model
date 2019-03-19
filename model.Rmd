@@ -109,7 +109,9 @@ analysis.2016 = analysis.2016[complete.cases(analysis.2016),]
 analysis.2017 = analysis.2017[complete.cases(analysis.2017),]
 analysis.all = rbind(analysis.2017, rbind(analysis.2016, analysis.2015))
 analysis.all = analysis.all[complete.cases(analysis.all),]
+analysis.all = droplevels(analysis.all)
 analysis.2018 = analysis.2018[complete.cases(analysis.2018),]
+analysis.2018 = droplevels(analysis.2018)
 ```
 
 Here's what `analysis.2018` looks like:
@@ -192,11 +194,11 @@ Now we will train a few different types of models. Here is a list of the models 
 - K Nearest Neighbors
 
 ```{r models}
-model.nnet = train(goal ~ . -goal -team -type -shooter -goalie,
+model.nnet = train(goal ~ x + y + typeNum + dist + angle,
 				   data = analysis.all,
 				   method = "nnet",
 				   trControl = control)
-model.knn = train(goal ~ . -goal -team -type -shooter -goalie,
+model.knn = train(goal ~ x + y + typeNum + dist + angle,
 				  data = analysis.all,
 				  method = "knn",
 				  trControl = control)
@@ -215,8 +217,8 @@ analysis.2018
 Now, let's get our predictions:
 
 ```{r get_predictions}
-nnet.prediction = predict(model.nnet, newdata = analysis.2018)
-knn.prediction = predict(model.knn, newdata = analysis.2018)
+nnet.prediction = predict(model.nnet, newdata = analysis.2018, na.action = na.exclude)
+knn.prediction = predict(model.knn, newdata = analysis.2018, na.action = na.exclude)
 
 nnet.prediction.data = data.frame(analysis.2018)
 nnet.prediction.data$predict = nnet.prediction
@@ -732,7 +734,7 @@ murray.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r murray_knn_dist}
 murray.knn.dist = make.knn.dist.plot(murray.knn, "#000000", "#FCB514", "Murray")
 
 murray.knn.dist
@@ -741,7 +743,7 @@ murray.knn.dist
 And now with the neural network.
 
 ```{r murray_nnet_dist}
-murray.nnet.dist = make.nnet.dist.plot(murray.knn, "#000000", "#FCB514", "Murray")
+murray.nnet.dist = make.nnet.dist.plot(murray.nnet, "#000000", "#FCB514", "Murray")
 
 murray.nnet.dist
 ```
@@ -781,7 +783,7 @@ price.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r price_knn_dist}
 price.knn.dist = make.knn.dist.plot(price.knn, "#AF1E2D", "#192168", "Price")
 
 price.knn.dist
@@ -790,7 +792,7 @@ price.knn.dist
 And now with the neural network.
 
 ```{r price_nnet_dist}
-price.nnet.dist = make.nnet.dist.plot(price.knn, "#AF1E2D", "#192168", "Price")
+price.nnet.dist = make.nnet.dist.plot(price.nnet, "#AF1E2D", "#192168", "Price")
 
 price.nnet.dist
 ```
@@ -830,7 +832,7 @@ holtby.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r holtby_knn_dist}
 holtby.knn.dist = make.knn.dist.plot(holtby.knn, "#041E42", "#C8102E", "Holtby")
 
 holtby.knn.dist
@@ -839,7 +841,7 @@ holtby.knn.dist
 And now with the neural network.
 
 ```{r holtby_nnet_dist}
-holtby.nnet.dist = make.nnet.dist.plot(holtby.knn, "#041E42", "#C8102E", "Holtby")
+holtby.nnet.dist = make.nnet.dist.plot(holtby.nnet, "#041E42", "#C8102E", "Holtby")
 
 holtby.nnet.dist
 ```
@@ -879,7 +881,7 @@ rask.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r rask_knn_dist}
 rask.knn.dist = make.knn.dist.plot(rask.knn, "#F74902", "#000000", "Rask")
 
 rask.knn.dist
@@ -888,7 +890,7 @@ rask.knn.dist
 And now with the neural network.
 
 ```{r rask_nnet_dist}
-rask.nnet.dist = make.nnet.dist.plot(rask.knn, "#F74902", "#000000", "Rask")
+rask.nnet.dist = make.nnet.dist.plot(rask.nnet, "#F74902", "#000000", "Rask")
 
 rask.nnet.dist
 ```
@@ -930,7 +932,7 @@ bishop.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r bishop_knn_dist}
 bishop.knn.dist = make.knn.dist.plot(bishop.knn, "#006847", "#8F8F8C", "Bishop")
 
 bishop.knn.dist
@@ -939,7 +941,7 @@ bishop.knn.dist
 And now with the neural network.
 
 ```{r bishop_nnet_dist}
-bishop.nnet.dist = make.nnet.dist.plot(bishop.knn, "#006847", "#8F8F8C", "Bishop")
+bishop.nnet.dist = make.nnet.dist.plot(bishop.nnet, "#006847", "#8F8F8C", "Bishop")
 
 bishop.nnet.dist
 ```
@@ -979,7 +981,7 @@ quick.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r quick_knn_dist}
 quick.knn.dist = make.knn.dist.plot(quick.knn, "#111111", "#A2AAAD", "Quick")
 
 quick.knn.dist
@@ -988,7 +990,7 @@ quick.knn.dist
 And now with the neural network.
 
 ```{r quick_nnet_dist}
-quick.nnet.dist = make.nnet.dist.plot(quick.knn, "#111111", "#A2AAAD", "Quick")
+quick.nnet.dist = make.nnet.dist.plot(quick.nnet, "#111111", "#A2AAAD", "Quick")
 
 quick.nnet.dist
 ```
@@ -1028,7 +1030,7 @@ koskinen.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r koskinen_knn_dist}
 koskinen.knn.dist = make.knn.dist.plot(koskinen.knn, "#041E42", "#FF4C00", "Koskinen")
 
 koskinen.knn.dist
@@ -1037,7 +1039,7 @@ koskinen.knn.dist
 And now with the neural network.
 
 ```{r koskinen_nnet_dist}
-koskinen.nnet.dist = make.nnet.dist.plot(koskinen.knn, "#041E42", "#FF4C00", "Koskinen")
+koskinen.nnet.dist = make.nnet.dist.plot(koskinen.nnet, "#041E42", "#FF4C00", "Koskinen")
 
 koskinen.nnet.dist
 ```
@@ -1077,7 +1079,7 @@ fleury.type.freq
 
 Here is how the Penguins did with shots versus goal probability from the KNN model.
 
-```{r crosby_knn_dist}
+```{r fleury_knn_dist}
 fleury.knn.dist = make.knn.dist.plot(fleury.knn, "#B4975A", "#333F42", "Fleury")
 
 fleury.knn.dist
@@ -1086,7 +1088,7 @@ fleury.knn.dist
 And now with the neural network.
 
 ```{r fleury_nnet_dist}
-fleury.nnet.dist = make.nnet.dist.plot(fleury.knn, "#B4975A", "#333F42", "Fleury")
+fleury.nnet.dist = make.nnet.dist.plot(fleury.nnet, "#B4975A", "#333F42", "Fleury")
 
 fleury.nnet.dist
 ```
